@@ -3,8 +3,8 @@
 			$site = $_GET['site'];
 			if (!isset($site))
 				$site = 1;
-			$site=($site-1)*5;
-            for ($i = $site; $i < sizeof($content) && $i < $site + 5; $i++) {
+			$tmp=($site-1)*5;
+            for ($i = $tmp; $i < sizeof($content) && $i < $tmp + 5; $i++) {
                 echo "<div class=\"entry\">";
                     echo "<h2>" . $title[$i] . "</h2>";
                     echo $content[$i];
@@ -14,14 +14,17 @@
             echo "<div id=\"sites\">";
             for($i = 1; $i <= ceil(sizeof($content) / 5); $i++)
             {
-				echo "<a href=\"index.php?site=$i\">[$i]</a>";
+				if($i != $site)
+					echo "<a href=\"index.php?site=$i\">[$i]</a>";
+				else
+					echo "[$i]";
 			}
             echo "</div>";
         } else {
             echo "<div class=\"entry\">";
                 echo "<h2>" . $title . "</h2>";
                 echo $content;
-                echo "<div class=\"meta\">asdf</div>";
+                //echo "<div class=\"meta\">asdf</div>";
             echo "</div>";
             echo "<div class=\"entry\">";
             	echo "<h3>Comments</h3> ";
@@ -32,7 +35,9 @@
                         	echo "<p class=\"ctext\">$ctext[$i]</p>";   	
                         echo "</div>";
                     }
-                }
+            }
+            else
+				echo "No comments, be the first one!";
             echo "</div>"; ?>
             <div class="entry">
                 <h3>Leave A Comment</h3> 

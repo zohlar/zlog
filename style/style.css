@@ -132,11 +132,14 @@ div.meta {
 	font-size: 13px;
 	border-top: 1px dotted grey;
 	color: #666;
-        font-family: "Courier New";
+    font-family: "Courier New";
 }
 div#sites {
-	color: #e00;
+	color: #666;
 	font-size: 13px;
 	text-align: center;
 	padding-bottom: 12px;
+}
+div#sites a {
+	color: #e00;
 }
