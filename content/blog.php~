@@ -1,0 +1,36 @@
+        <?php
+        if (!isset($entry)) {
+            for ($i = 0; $i < sizeof($content); $i++) {
+                echo "<div class=\"entry\">";
+                    echo "<h2>" . $title[$i] . "</h2>";
+                    echo $content[$i];
+                    echo "<div class=\"meta\"><a href='index.php?page=blog&entry=" . $entryid[$i] . "'>Comments</a></div>";
+                echo "</div>";
+            }
+        } else {
+            echo "<div class=\"entry\">";
+                echo "<h2>" . $title . "</h2>";
+                echo $content;
+                echo "<div class=\"meta\">asdf</div>";
+            echo "</div>";
+            echo "<div class=\"entry\">";
+            	echo "<h3>Comments</h3> ";
+            if(isset($cnick)) {
+                    for($i = 0; $i < sizeof($cnick); $i++) {
+								echo "<div class=\"comment\">";                        
+                        	echo "<p class=\"chead\"><b>$cnick[$i]</b> ".date("F j, Y, G:i", strtotime($ctime[$i]))."</p>";
+                        	echo "<p class=\"ctext\">$ctext[$i]</p>";   	
+                        echo "</div>";
+                    }
+                }
+            echo "</div>"; ?>
+            <div class="entry">
+                <h3>Leave A Comment</h3> 
+                <form id="newcomment" action="index.php?page=newcomment" method="POST">
+                    <input type="text" name="newentry" value="<?php echo $entry; ?>" hidden="true"/>
+                    Nick:</br><input type="text" name="newnick"/></br>
+                    Comment:</br><TEXTAREA NAME="newtext" COLS=85 ROWS=6></TEXTAREA></br>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        <?php } ?>

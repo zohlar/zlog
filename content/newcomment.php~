@@ -1,0 +1,22 @@
+	<div class="entry">
+		<h2>Saving new comment ...</h2>
+	<?php
+		if(isset($_POST["newnick"])) {
+			
+			
+			$newentry =  $_POST["newentry"];
+			$newnick =  $_POST["newnick"];
+         $newnick =  $_POST["newtext"];
+			
+			$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
+			mysql_select_db($dbname);
+			
+			$query = "INSERT INTO `zlog`.`comment`(`commentid`,`entryid`,`nick`,`text`,`time`)VALUES(NULL,'$newentry','$newnick','$newtext',CURRENT_TIMESTAMP)";
+			mysql_query($query);
+			mysql_close();
+			echo "<p>successful! Return to the article: <a href=\"index.php?page=blog&entry=$newentry\">click</a></p>";
+		}
+		else {
+         echo "<p>Saving comment failed!</p>";		
+		} ?>
+	</div>
